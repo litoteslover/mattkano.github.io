@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<style type="text/css">
+@font-face {
+    font-family: digital-7;
+    src: url("digital-7.ttf" );
+}
+
+
+
+.clockStyle {
+	color:#FFFFFF;
+	font-family:"digital-7";
+    font-size:160px;
+    font-weight:light;
+	letter-spacing: 2px;
+	display:inline;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+#clockDisplay {
+    position:absolute;
+    top:0; right:0;
+    bottom:0; left:0;
+}
+</style>
+</head>
+<body>
+<div id="clockDisplay" class="clockStyle"></div>
+<script>
+function renderTime() {
+	var currentTime = new Date();
+	var diem = "AM";
+	var h = currentTime.getHours();
+	var m = currentTime.getMinutes();
+    var s = currentTime.getSeconds();
+	setTimeout('renderTime()',1000);
+    if (h == 0) {
+		h = 12;
+	} else if (h > 12) { 
+		h = h - 12;
+		diem="PM";
+	}
+	if (h < 10) {
+		h = "0" + h;
+	}
+	if (m < 10) {
+		m = "0" + m;
+	}
+	if (s < 10) {
+		s = "0" + s;
+	}
+    var myClock = document.getElementById('clockDisplay');
+	myClock.textContent = h + ":" + m + ":" + s + " " + diem;
+	myClock.innerText = h + ":" + m + ":" + s + " " + diem;
+	var clockColor = (3600*h) + (60*m) + (1*s); 
+	var hueNumber = clockColor/120;
+/*	console.log(h + " " + m +" " + s);
+	console.log(clockColor);*/
+	console.log(hueNumber);
+	var finalcolor = "hsla("+hueNumber+", 50%, 70%, 1.0)";
+	var number=150;
+	$('.clockStyle').css('background', finalcolor);
+}
+renderTime();
+</script>
+</body>
+</html>
