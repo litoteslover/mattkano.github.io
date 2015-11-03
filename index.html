@@ -64,7 +64,10 @@ function renderTime() {
 /*	console.log(h + " " + m +" " + s);
 	console.log(clockColor);*/
 	console.log(hueNumber);
-	$('.clockStyle').css('background-color', 'hsla('+hueNumber+', 70%, 50%, 0.3)');
+	if diem = "PM"{
+		lightness=10%;
+	}
+	$('.clockStyle').css('background-color', 'hsla('+hueNumber+', 70%,'+lightness', 0.3)');
 }
 renderTime();
 </script>
